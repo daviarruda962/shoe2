@@ -81,22 +81,11 @@ function LazyImage({ src, alt, className, width = 800, quality = 75, ...props }:
 
 function ImportCard({ item }: { item: any }) {
   return (
-    <motion.div 
-      initial={false}
-      whileInView={{ 
-        borderColor: "rgba(34, 197, 94, 0.4)",
-      }}
-      viewport={{ once: false, amount: 0.6 }}
-      transition={{ duration: 0.6 }}
-      className="group relative bg-[#0A0A0A] rounded-xl border border-white/5 overflow-hidden flex flex-col h-full"
+    <div 
+      className="group relative bg-[#0A0A0A] rounded-xl border border-white/5 overflow-hidden flex flex-col h-full transition-colors hover:border-brand-green/40"
     >
-      {/* Shiny Border Effect */}
-      <motion.div 
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: false, amount: 0.6 }}
-        className="absolute -inset-[1px] bg-gradient-to-b from-white/20 to-transparent rounded-xl pointer-events-none"
-      ></motion.div>
+      {/* Shiny Border Effect (Static) */}
+      <div className="absolute -inset-[1px] bg-gradient-to-b from-white/10 to-transparent rounded-xl pointer-events-none opacity-50"></div>
       
       <div className="relative flex flex-col h-full">
         {/* Single Image Container */}
@@ -115,7 +104,7 @@ function ImportCard({ item }: { item: any }) {
           <p className="text-gray-500 leading-relaxed text-sm font-medium">{item.desc}</p>
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 }
 
@@ -153,10 +142,10 @@ export default function App() {
         
         {/* VSL - Video Sales Letter */}
         <div className="w-full max-w-4xl mb-12 relative group">
-          <div className="aspect-video bg-black rounded-3xl overflow-hidden shadow-[0_30px_60px_rgba(0,0,0,0.3)] border-4 border-black relative">
+          <div className="aspect-video bg-black rounded-3xl overflow-hidden shadow-2xl border-4 border-black relative">
             {/* Placeholder para Vídeo (VSL) */}
             <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-900 to-black">
-              <div className="w-20 h-20 md:w-32 md:h-32 bg-brand-green rounded-full flex items-center justify-center cursor-pointer hover:scale-110 transition-transform shadow-[0_0_50px_rgba(34,197,94,0.4)]">
+              <div className="w-20 h-20 md:w-32 md:h-32 bg-brand-green rounded-full flex items-center justify-center cursor-pointer hover:scale-110 transition-transform shadow-lg">
                 <Play className="w-10 h-10 md:w-16 md:h-16 text-black fill-black ml-2" />
               </div>
               <div className="absolute bottom-8 left-8 right-8 flex items-center justify-between text-white/50 font-sans text-xs uppercase tracking-widest">
@@ -172,8 +161,8 @@ export default function App() {
             </div>
           </div>
           
-          {/* Sombra decorativa */}
-          <div className="absolute -inset-4 bg-brand-green/10 blur-xl -z-10 rounded-full opacity-50 group-hover:opacity-100 transition-opacity"></div>
+          {/* Sombra decorativa (Static) */}
+          <div className="absolute -inset-4 bg-brand-green/5 blur-lg -z-10 rounded-full opacity-50"></div>
         </div>
       </section>
 
@@ -208,23 +197,22 @@ export default function App() {
                 "https://i.ibb.co/B2k9ZNpm/6.png",
                 "https://i.ibb.co/7dWH6P2F/7.png"
               ].map((url, i) => (
-                <motion.div 
+                <div 
                   key={`carousel-1-${i}`} 
-                  whileHover={{ y: -10, rotate: 1 }}
-                  className="w-80 md:w-[450px] aspect-[4/5] bg-white rounded-2xl flex-shrink-0 relative overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-gray-100 group"
+                  className="w-80 md:w-[450px] aspect-[4/5] bg-white rounded-2xl flex-shrink-0 relative overflow-hidden shadow-lg border border-gray-100 group"
                 >
                   <LazyImage 
                     src={url} 
                     alt={`Resultado ${i + 1}`}
                     width={500}
                     quality={60}
-                    className="w-full h-full transition-transform duration-700 group-hover:scale-110"
+                    className="w-full h-full transition-transform duration-700 group-hover:scale-105"
                   />
                   
                   {/* Overlay Info */}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
                     <div className="flex items-center gap-2 mb-2">
-                      <div className="w-2 h-2 bg-brand-green rounded-full animate-pulse"></div>
+                      <div className="w-2 h-2 bg-brand-green rounded-full"></div>
                       <span className="text-brand-green font-black text-xs uppercase tracking-widest">Produto Verificado</span>
                     </div>
                     <h4 className="text-white font-black text-2xl tracking-tight italic">Qualidade 1:1 Premium</h4>
@@ -234,7 +222,7 @@ export default function App() {
                   <div className="absolute top-6 right-6 bg-brand-green text-black font-black text-[10px] px-3 py-1 rounded-full uppercase tracking-widest shadow-lg">
                     Recebido
                   </div>
-                </motion.div>
+                </div>
               ))}
               {/* Duplicata para Loop Infinito */}
               {[
@@ -246,22 +234,21 @@ export default function App() {
                 "https://i.ibb.co/B2k9ZNpm/6.png",
                 "https://i.ibb.co/7dWH6P2F/7.png"
               ].map((url, i) => (
-                <motion.div 
+                <div 
                   key={`carousel-2-${i}`} 
-                  whileHover={{ y: -10, rotate: 1 }}
-                  className="w-80 md:w-[450px] aspect-[4/5] bg-white rounded-2xl flex-shrink-0 relative overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-gray-100 group"
+                  className="w-80 md:w-[450px] aspect-[4/5] bg-white rounded-2xl flex-shrink-0 relative overflow-hidden shadow-lg border border-gray-100 group"
                 >
                   <LazyImage 
                     src={url} 
                     alt={`Resultado ${i + 1}`}
                     width={500}
                     quality={60}
-                    className="w-full h-full transition-transform duration-700 group-hover:scale-110"
+                    className="w-full h-full transition-transform duration-700 group-hover:scale-105"
                   />
                   
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
                     <div className="flex items-center gap-2 mb-2">
-                      <div className="w-2 h-2 bg-brand-green rounded-full animate-pulse"></div>
+                      <div className="w-2 h-2 bg-brand-green rounded-full"></div>
                       <span className="text-brand-green font-black text-xs uppercase tracking-widest">Produto Verificado</span>
                     </div>
                     <h4 className="text-white font-black text-2xl tracking-tight italic">Qualidade 1:1 Premium</h4>
@@ -270,7 +257,7 @@ export default function App() {
                   <div className="absolute top-6 right-6 bg-brand-green text-black font-black text-[10px] px-3 py-1 rounded-full uppercase tracking-widest shadow-lg">
                     Recebido
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>
@@ -380,13 +367,13 @@ export default function App() {
         </div>
 
         <motion.div 
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bg-zinc-950 text-white rounded-3xl shadow-[0_20px_40px_-12px_rgba(220,38,38,0.15)] relative overflow-hidden border border-white/5 p-[15px] pb-[30px] group transition-all duration-500 hover:shadow-[0_32px_60px_-12px_rgba(220,38,38,0.25)]"
+          className="bg-zinc-950 text-white rounded-3xl shadow-xl relative overflow-hidden border border-white/5 p-[15px] pb-[30px] group transition-all duration-500"
         >
-          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-red-600/10 rounded-full blur-[80px] -mr-48 -mt-48 group-hover:bg-red-600/20 transition-colors duration-700"></div>
-          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-red-600/5 rounded-full blur-[60px] -ml-24 -mb-24"></div>
+          {/* Simple Static Glows */}
+          <div className="absolute top-0 right-0 w-[300px] h-[300px] bg-red-600/5 rounded-full blur-[60px] -mr-24 -mt-24"></div>
           
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="order-2 lg:order-1 flex flex-col items-center text-center">
@@ -402,18 +389,13 @@ export default function App() {
                   <><span className="text-white font-black">Sem garantia</span> de reembolso</>,
                   <><span className="text-white font-black">Um tiro na lua</span> a cada envio</>
                 ].map((text, idx) => (
-                  <motion.div 
+                  <div 
                     key={idx} 
-                    initial={{ scale: 1, borderColor: "rgba(255, 255, 255, 0.1)" }}
-                    whileInView={{ 
-                      borderColor: "rgba(239, 68, 68, 0.4)" 
-                    }}
-                    viewport={{ margin: "-45% 0px -45% 0px" }}
-                    className="flex flex-col items-center gap-3 bg-white/5 p-5 rounded-2xl border text-gray-300 font-medium text-sm transition-all text-center"
+                    className="flex flex-col items-center gap-3 bg-white/5 p-5 rounded-2xl border border-white/10 text-gray-300 font-medium text-sm transition-all text-center"
                   >
                     <XCircle className="w-5 h-5 flex-shrink-0 text-red-500" />
                     <span>{text}</span>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
             </div>
@@ -445,16 +427,13 @@ export default function App() {
       {/* 8. BOX QUALIDADE SHOE (PREMIUM REESTILIZADO) */}
       <section className="px-4 max-w-7xl mx-auto mb-32 relative">
         <motion.div 
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bg-zinc-950 text-white rounded-3xl shadow-[0_20px_40px_-12px_rgba(34,197,94,0.15)] relative overflow-hidden border border-white/5 p-[15px] pb-[30px] group transition-all duration-500 hover:shadow-[0_32px_60px_-12px_rgba(34,197,94,0.25)]"
+          className="bg-zinc-950 text-white rounded-3xl shadow-xl relative overflow-hidden border border-white/5 p-[15px] pb-[30px] group transition-all duration-500"
         >
-          {/* Animated Shimmer Effect */}
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-brand-green/[0.05] to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-[2000ms] ease-in-out"></div>
-          
-          <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-brand-green/10 rounded-full blur-[80px] -ml-48 -mt-48 group-hover:bg-brand-green/20 transition-colors duration-700"></div>
-          <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-brand-green/5 rounded-full blur-[60px] -mr-24 -mb-24"></div>
+          {/* Simple Static Glows */}
+          <div className="absolute top-0 left-0 w-[300px] h-[300px] bg-brand-green/5 rounded-full blur-[60px] -ml-24 -mt-24"></div>
           
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="relative">
@@ -492,18 +471,13 @@ export default function App() {
                   <>Garantia total de <span className="text-white font-black">satisfação</span></>,
                   <><span className="text-white font-black">10.000+ peças</span> disponíveis</>
                 ].map((text, idx) => (
-                  <motion.div 
+                  <div 
                     key={idx} 
-                    initial={{ scale: 1, borderColor: "rgba(255, 255, 255, 0.1)" }}
-                    whileInView={{ 
-                      borderColor: "rgba(34, 197, 94, 0.4)" 
-                    }}
-                    viewport={{ margin: "-45% 0px -45% 0px" }}
-                    className="flex flex-col items-center gap-3 bg-white/5 p-5 rounded-2xl border text-gray-300 font-medium text-sm transition-all text-center"
+                    className="flex flex-col items-center gap-3 bg-white/5 p-5 rounded-2xl border border-white/10 text-gray-300 font-medium text-sm transition-all text-center"
                   >
                     <CheckCircle2 className="w-5 h-5 text-brand-green flex-shrink-0" />
                     <span>{text}</span>
-                  </motion.div>
+                  </div>
                 ))}
               </div>
             </div>
@@ -512,11 +486,10 @@ export default function App() {
       </section>
 
       {/* 9. O QUE VOCÊ PODE IMPORTAR (DARK & SHINY) */}
-      <section className="bg-black py-32 relative overflow-hidden bg-[radial-gradient(circle_at_50%_50%,rgba(34,197,94,0.05)_0%,transparent_70%)]">
-        {/* Background Glows */}
-        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-brand-green/20 blur-[80px] rounded-full -translate-x-1/2 -translate-y-1/2"></div>
-        <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-brand-green/15 blur-[80px] rounded-full translate-x-1/2 translate-y-1/2"></div>
-        <div className="absolute top-1/2 left-1/2 w-[800px] h-[800px] bg-brand-green/10 blur-[100px] rounded-full -translate-x-1/2 -translate-y-1/2 opacity-60"></div>
+      <section className="bg-black py-32 relative overflow-hidden">
+        {/* Background Glows (Simplified) */}
+        <div className="absolute top-0 left-1/4 w-[300px] h-[300px] bg-brand-green/10 blur-[60px] rounded-full -translate-x-1/2 -translate-y-1/2"></div>
+        <div className="absolute bottom-0 right-1/4 w-[300px] h-[300px] bg-brand-green/5 blur-[60px] rounded-full translate-x-1/2 translate-y-1/2"></div>
 
         <div className="px-4 max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-20">
