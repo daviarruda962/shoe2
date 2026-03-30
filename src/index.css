@@ -17,6 +17,10 @@
   input, button, textarea, select {
     font-family: inherit;
   }
+  section {
+    content-visibility: auto;
+    contain-intrinsic-size: 1px 500px;
+  }
 }
 
 @keyframes text-shimmer {

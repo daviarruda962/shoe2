@@ -32,6 +32,53 @@ const optimizeImage = (url: string, width: number = 800, quality: number = 75) =
   return `https://images.weserv.nl/?url=${encodeURIComponent(url.replace(/^https?:\/\//, ''))}&w=${width}&q=${quality}&output=webp`;
 };
 
+function LazyImage({ src, alt, className, width = 800, quality = 75, ...props }: any) {
+  const [inView, setInView] = useState(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setInView(true);
+        } else {
+          // Unload when out of view to save memory as requested
+          setInView(false);
+        }
+      },
+      { rootMargin: '200px' } // Load slightly before it comes into view
+    );
+
+    if (ref.current) {
+      observer.observe(ref.current);
+    }
+
+    return () => {
+      if (ref.current) {
+        observer.unobserve(ref.current);
+      }
+    };
+  }, []);
+
+  return (
+    <div ref={ref} className={`relative overflow-hidden ${className}`}>
+      {inView ? (
+        <motion.img
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          src={optimizeImage(src, width, quality)}
+          alt={alt}
+          className="w-full h-full object-cover"
+          referrerPolicy="no-referrer"
+          {...props}
+        />
+      ) : (
+        <div className="w-full h-full bg-neutral-900 animate-pulse" />
+      )}
+    </div>
+  );
+}
+
 function ImportCard({ item }: { item: any }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [constraints, setConstraints] = useState({ left: 0, right: 0 });
@@ -83,13 +130,11 @@ function ImportCard({ item }: { item: any }) {
           >
             {item.images.map((imgUrl: string, sIdx: number) => (
               <div key={sIdx} className="w-full h-full flex-shrink-0 relative">
-                <img 
-                  src={optimizeImage(imgUrl, 600)} 
+                <LazyImage 
+                  src={imgUrl} 
                   alt={item.title}
-                  loading="lazy"
-                  decoding="async"
-                  className="w-full h-full object-cover pointer-events-none opacity-80 group-hover:opacity-100 transition-opacity duration-500"
-                  referrerPolicy="no-referrer"
+                  width={600}
+                  className="w-full h-full"
                 />
               </div>
             ))}
@@ -116,15 +161,6 @@ function ImportCard({ item }: { item: any }) {
 export default function App() {
   const [openFaq, setOpenFaq] = useState<number | null>(null);
   const [displayCount, setDisplayCount] = useState(30);
-  const [showStickyCTA, setShowStickyCTA] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowStickyCTA(window.scrollY > 800);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
 
   useEffect(() => {
     const controls = animate(30, 90, {
@@ -216,13 +252,12 @@ export default function App() {
                   whileHover={{ y: -10, rotate: 1 }}
                   className="w-80 md:w-[450px] aspect-[4/5] bg-white rounded-2xl flex-shrink-0 relative overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-gray-100 group"
                 >
-                  <img 
-                    src={optimizeImage(url, 500, 60)} 
+                  <LazyImage 
+                    src={url} 
                     alt={`Resultado ${i + 1}`}
-                    loading="lazy"
-                    decoding="async"
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    referrerPolicy="no-referrer"
+                    width={500}
+                    quality={60}
+                    className="w-full h-full transition-transform duration-700 group-hover:scale-110"
                   />
                   
                   {/* Overlay Info */}
@@ -255,13 +290,12 @@ export default function App() {
                   whileHover={{ y: -10, rotate: 1 }}
                   className="w-80 md:w-[450px] aspect-[4/5] bg-white rounded-2xl flex-shrink-0 relative overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.1)] border border-gray-100 group"
                 >
-                  <img 
-                    src={optimizeImage(url, 500, 60)} 
+                  <LazyImage 
+                    src={url} 
                     alt={`Resultado ${i + 1}`}
-                    loading="lazy"
-                    decoding="async"
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                    referrerPolicy="no-referrer"
+                    width={500}
+                    quality={60}
+                    className="w-full h-full transition-transform duration-700 group-hover:scale-110"
                   />
                   
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-8">
@@ -436,13 +470,12 @@ export default function App() {
                 viewport={{ amount: 0.6 }}
                 className="aspect-square bg-zinc-900 rounded-2xl overflow-hidden border border-white/5 transition-all duration-700 shadow-xl group-hover:shadow-red-600/20"
               >
-                <img 
-                  src={optimizeImage("https://i.ibb.co/nNWmxzmf/image.png", 800, 70)} 
+                <LazyImage 
+                  src="https://i.ibb.co/nNWmxzmf/image.png" 
                   alt="Qualidade Ruim"
-                  loading="lazy"
-                  decoding="async"
-                  className="w-full h-full object-cover contrast-125 opacity-60 group-hover:opacity-40 transition-opacity rounded-xl"
-                  referrerPolicy="no-referrer"
+                  width={800}
+                  quality={70}
+                  className="w-full h-full contrast-125 opacity-60 group-hover:opacity-40 transition-opacity rounded-xl"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent"></div>
               </motion.div>
@@ -476,13 +509,12 @@ export default function App() {
                 viewport={{ amount: 0.6 }}
                 className="aspect-square bg-zinc-900 rounded-2xl overflow-hidden border border-white/5 transition-all duration-700 shadow-xl group-hover:shadow-brand-green/30"
               >
-                <img 
-                  src={optimizeImage("https://i.ibb.co/sdZDJTZj/af.png", 800, 75)} 
+                <LazyImage 
+                  src="https://i.ibb.co/sdZDJTZj/af.png" 
                   alt="Qualidade Premium"
-                  loading="lazy"
-                  decoding="async"
-                  className="w-full h-full object-cover transition-transform duration-[2000ms] rounded-xl"
-                  referrerPolicy="no-referrer"
+                  width={800}
+                  quality={75}
+                  className="w-full h-full transition-transform duration-[2000ms] rounded-xl"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent"></div>
               </motion.div>
@@ -637,12 +669,11 @@ export default function App() {
               <div className="flex -space-x-4">
                 {[1, 2, 3, 4].map(i => (
                   <div key={i} className="w-12 h-12 rounded-full border-4 border-zinc-900 overflow-hidden shadow-lg group-hover:scale-110 transition-transform" style={{ transitionDelay: `${i * 50}ms` }}>
-                    <img 
+                    <LazyImage 
                       src={`https://picsum.photos/seed/user-bonus-${i}/100/100`} 
                       alt="User" 
-                      loading="lazy"
-                      decoding="async"
-                      referrerPolicy="no-referrer" 
+                      width={100}
+                      className="w-full h-full"
                     />
                   </div>
                 ))}
@@ -971,26 +1002,6 @@ export default function App() {
           ))}
         </div>
       </section>
-
-      {/* Sticky CTA for Mobile */}
-      <AnimatePresence>
-        {showStickyCTA && (
-          <motion.div 
-            initial={{ y: 100 }}
-            animate={{ y: 0 }}
-            exit={{ y: 100 }}
-            className="fixed bottom-0 left-0 right-0 z-[100] p-4 md:hidden"
-          >
-            <motion.a 
-              href="#oferta"
-              whileTap={{ scale: 0.95 }}
-              className="flex items-center justify-center w-full py-4 bg-brand-green text-white font-black text-lg rounded-xl shadow-[0_-10px_30px_rgba(34,197,94,0.3)]"
-            >
-              QUERO MEU ACESSO AGORA <ArrowRight className="ml-2 w-5 h-5" />
-            </motion.a>
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       {/* Footer */}
       <footer className="py-12 bg-black text-white text-center border-t border-white/5">
