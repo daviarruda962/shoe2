@@ -82,10 +82,10 @@ function LazyImage({ src, alt, className, width = 800, quality = 75, ...props }:
 function ImportCard({ item }: { item: any }) {
   return (
     <div 
-      className="group relative bg-[#0A0A0A] rounded-xl border border-white/5 overflow-hidden flex flex-col h-full transition-colors hover:border-brand-green/40"
+      className="group relative bg-[#0A0A0A] rounded-xl border border-brand-green/40 shadow-[0_0_30px_rgba(34,197,94,0.15)] overflow-hidden flex flex-col h-full transition-all hover:shadow-[0_0_50px_rgba(34,197,94,0.25)]"
     >
-      {/* Shiny Border Effect (Static) */}
-      <div className="absolute -inset-[1px] bg-gradient-to-b from-white/10 to-transparent rounded-xl pointer-events-none opacity-50"></div>
+      {/* Shiny Border Effect (Fixed) */}
+      <div className="absolute -inset-[1px] bg-gradient-to-b from-brand-green/30 to-transparent rounded-xl pointer-events-none"></div>
       
       <div className="relative flex flex-col h-full">
         {/* Single Image Container */}
@@ -366,10 +366,7 @@ export default function App() {
           </h2>
         </div>
 
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+        <div 
           className="bg-zinc-950 text-white rounded-3xl shadow-xl relative overflow-hidden border border-white/5 p-[15px] pb-[30px] group transition-all duration-500"
         >
           {/* Simple Static Glows */}
@@ -401,9 +398,7 @@ export default function App() {
             </div>
 
             <div className="order-1 lg:order-2 relative">
-              <motion.div 
-                whileInView={{ opacity: 1 }}
-                viewport={{ amount: 0.6 }}
+              <div 
                 className="aspect-square bg-zinc-900 rounded-2xl overflow-hidden border border-white/5 transition-all duration-700 shadow-xl group-hover:shadow-red-600/20"
               >
                 <LazyImage 
@@ -414,32 +409,27 @@ export default function App() {
                   className="w-full h-full contrast-125 opacity-60 group-hover:opacity-40 transition-opacity rounded-xl"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent"></div>
-              </motion.div>
+              </div>
               {/* Floating Badge */}
               <div className="absolute -bottom-3 -left-3 bg-red-600 text-white px-3 py-1.5 rounded-xl shadow-[0_10px_20px_rgba(220,38,38,0.4)] rotate-[-6deg] z-20">
                 <div className="text-xl font-black tracking-tighter">R$350+</div>
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
       </section>
 
       {/* 8. BOX QUALIDADE SHOE (PREMIUM REESTILIZADO) */}
       <section className="px-4 max-w-7xl mx-auto mb-32 relative">
-        <motion.div 
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="bg-zinc-950 text-white rounded-3xl shadow-xl relative overflow-hidden border border-white/5 p-[15px] pb-[30px] group transition-all duration-500"
+        <div 
+          className="bg-zinc-950 text-white rounded-3xl shadow-[0_0_40px_rgba(34,197,94,0.15)] relative overflow-hidden border border-brand-green/30 p-[15px] pb-[30px] group transition-all duration-500"
         >
           {/* Simple Static Glows */}
           <div className="absolute top-0 left-0 w-[300px] h-[300px] bg-brand-green/5 rounded-full blur-[60px] -ml-24 -mt-24"></div>
           
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="relative">
-              <motion.div 
-                whileInView={{ opacity: 1 }}
-                viewport={{ amount: 0.6 }}
+              <div 
                 className="aspect-square bg-zinc-900 rounded-2xl overflow-hidden border border-white/5 transition-all duration-700 shadow-xl group-hover:shadow-brand-green/30"
               >
                 <LazyImage 
@@ -450,7 +440,7 @@ export default function App() {
                   className="w-full h-full transition-transform duration-[2000ms] rounded-xl"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-zinc-950 via-transparent to-transparent"></div>
-              </motion.div>
+              </div>
               {/* Floating Badge */}
               <div className="absolute -top-3 -right-3 bg-brand-green text-white px-3 py-1.5 rounded-xl shadow-[0_10px_20px_rgba(34,197,94,0.4)] rotate-[6deg] z-20">
                 <div className="text-xl font-black tracking-tighter text-white">R$170</div>
@@ -482,7 +472,7 @@ export default function App() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
       </section>
 
       {/* 9. O QUE VOCÊ PODE IMPORTAR (DARK & SHINY) */}
@@ -558,26 +548,16 @@ export default function App() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 w-full">
           {/* Bonus #1 */}
-          <motion.div 
-            initial={{ opacity: 1, x: 0, y: 0, scale: 1 }}
-            whileInView={{ 
-              y: -8, 
-              scale: 1.02,
-              borderColor: "rgba(34, 197, 94, 0.3)"
-            }}
-            viewport={{ margin: "-40% 0px -40% 0px" }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            className="bg-zinc-900 text-white p-10 rounded-[40px] relative overflow-hidden group shadow-xl flex flex-col items-center text-center border border-white/10 h-full transition-all"
+          <div 
+            className="bg-zinc-900 text-white p-10 rounded-[40px] relative overflow-hidden group shadow-xl flex flex-col items-center text-center border border-brand-green/30 h-full transition-all"
           >
             <div className="absolute top-0 right-0 w-64 h-64 bg-brand-green/15 blur-[60px] -mr-32 -mt-32 group-hover:bg-brand-green/25 transition-colors"></div>
             
-            <motion.div 
-              whileInView={{ rotate: 6, scale: 1.1 }}
-              viewport={{ margin: "-40% 0px -40% 0px" }}
-              className="w-16 h-16 bg-brand-green rounded-2xl flex items-center justify-center mb-8 shadow-[0_10px_30px_rgba(34,197,94,0.3)] transition-all"
+            <div 
+              className="w-16 h-16 bg-brand-green rounded-2xl flex items-center justify-center mb-8 shadow-[0_10px_30px_rgba(34,197,94,0.3)]"
             >
               <BookOpen className="w-8 h-8 text-black" />
-            </motion.div>
+            </div>
 
             <div className="mb-4 px-3 py-1 bg-brand-green/10 text-brand-green font-black text-[10px] rounded-full tracking-widest uppercase border border-brand-green/20">
               Bônus #1
@@ -611,29 +591,19 @@ export default function App() {
               </div>
               <div className="text-brand-green font-black text-xs tracking-widest uppercase">Atualizado hoje</div>
             </div>
-          </motion.div>
+          </div>
 
           {/* Bonus #2 */}
-          <motion.div 
-            initial={{ opacity: 1, x: 0, y: 0, scale: 1 }}
-            whileInView={{ 
-              y: -8, 
-              scale: 1.02,
-              borderColor: "rgba(34, 197, 94, 0.3)"
-            }}
-            viewport={{ margin: "-40% 0px -40% 0px" }}
-            transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            className="bg-zinc-900 text-white p-10 rounded-[40px] relative overflow-hidden group shadow-xl flex flex-col items-center text-center border border-white/10 h-full transition-all"
+          <div 
+            className="bg-zinc-900 text-white p-10 rounded-[40px] relative overflow-hidden group shadow-xl flex flex-col items-center text-center border border-brand-green/30 h-full transition-all"
           >
             <div className="absolute top-0 right-0 w-64 h-64 bg-brand-green/15 blur-[60px] -mr-32 -mt-32 group-hover:bg-brand-green/25 transition-colors"></div>
             
-            <motion.div 
-              whileInView={{ rotate: 6, scale: 1.1 }}
-              viewport={{ margin: "-40% 0px -40% 0px" }}
-              className="w-16 h-16 bg-brand-green rounded-2xl flex items-center justify-center mb-8 shadow-[0_10px_30px_rgba(34,197,94,0.3)] transition-all"
+            <div 
+              className="w-16 h-16 bg-brand-green rounded-2xl flex items-center justify-center mb-8 shadow-[0_10px_30px_rgba(34,197,94,0.3)]"
             >
               <Users className="w-8 h-8 text-black" />
-            </motion.div>
+            </div>
 
             <div className="mb-4 px-3 py-1 bg-brand-green/10 text-brand-green font-black text-[10px] rounded-full tracking-widest uppercase border border-brand-green/20">
               Bônus #2
@@ -650,7 +620,7 @@ export default function App() {
                   <div className="w-12 h-12 bg-zinc-800 rounded-full flex items-center justify-center border border-white/10">
                     <Zap className="w-6 h-6 text-brand-green" />
                   </div>
-                  <div className="absolute -top-1 -right-1 w-4 h-4 bg-brand-green rounded-full border-2 border-zinc-900 animate-pulse"></div>
+                  <div className="absolute -top-1 -right-1 w-4 h-4 bg-brand-green rounded-full border-2 border-zinc-900"></div>
                 </div>
                 <div>
                   <div className="text-white font-bold text-sm">Suporte em Tempo Real</div>
@@ -658,18 +628,14 @@ export default function App() {
                 </div>
               </div>
             </div>
-          </motion.div>
+          </div>
         </div>
       </section>
 
       {/* 11. TEXTO DE APLICABILIDADE (CENTRALIZADO) */}
       <section className="px-4 max-w-6xl mx-auto mb-32">
-        <motion.div 
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          whileHover={{ y: -5 }}
-          className="bg-zinc-900 text-white rounded-[40px] shadow-[0_40px_100px_rgba(0,0,0,0.5)] relative overflow-hidden border border-white/10 p-8 md:p-20 group flex flex-col items-center text-center"
+        <div 
+          className="bg-zinc-900 text-white rounded-[40px] shadow-[0_0_50px_rgba(34,197,94,0.15)] relative overflow-hidden border border-brand-green/30 p-8 md:p-20 group flex flex-col items-center text-center"
         >
           {/* Background Decorative Elements */}
           <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-green/20 rounded-full blur-[80px] -mr-64 -mt-64 group-hover:bg-brand-green/30 transition-colors duration-700"></div>
@@ -695,37 +661,29 @@ export default function App() {
                 { title: "Importadores", desc: <span>Pague apenas o custo real do produto <span className="text-white font-black">sem margens e burocracia de agentes.</span></span>, icon: <Layers className="w-5 h-5" /> },
                 { title: "Exigentes", desc: <span>Quem quer a melhor qualidade possível <span className="text-white font-black">sem precisar pagar +R$500</span> por uma peça.</span>, icon: <Star className="w-5 h-5" /> }
               ].map((item, idx) => (
-                <motion.div 
+                <div 
                   key={idx} 
-                  initial={{ y: 0, scale: 1 }}
-                  whileInView={{ y: -8, scale: 1.03, backgroundColor: "rgba(255, 255, 255, 0.1)" }}
-                  viewport={{ margin: "-45% 0px -45% 0px" }}
-                  className="bg-white/5 md:backdrop-blur-md p-8 rounded-3xl border border-white/10 flex flex-col items-center gap-4 transition-all group/item"
+                  className="bg-white/5 md:backdrop-blur-md p-8 rounded-3xl border border-white/10 flex flex-col items-center gap-4 transition-all group/item hover:bg-white/10"
                 >
-                  <motion.div 
-                    whileInView={{ rotate: 6, scale: 1.1 }}
-                    viewport={{ margin: "-45% 0px -45% 0px" }}
-                    className="w-14 h-14 bg-brand-green rounded-2xl flex items-center justify-center flex-shrink-0 shadow-[0_10px_30px_rgba(34,197,94,0.3)] transition-transform"
+                  <div 
+                    className="w-14 h-14 bg-brand-green rounded-2xl flex items-center justify-center flex-shrink-0 shadow-[0_10px_30px_rgba(34,197,94,0.3)] transition-transform group-hover/item:scale-110 group-hover/item:rotate-6"
                   >
                     <div className="text-black">{item.icon}</div>
-                  </motion.div>
+                  </div>
                   <div>
                     <h4 className="text-xl font-bold text-white mb-2 tracking-tight">{item.title}</h4>
                     <p className="text-gray-400 text-sm leading-snug">{item.desc}</p>
                   </div>
-                </motion.div>
+                </div>
               ))}
             </div>
           </div>
-        </motion.div>
+        </div>
       </section>
 
       {/* 11.5 GARANTIA */}
       <section className="px-4 mb-32 max-w-5xl mx-auto">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
+        <div 
           className="bg-zinc-900 rounded-[40px] border border-white/10 p-8 md:p-16 relative overflow-hidden group"
         >
           <div className="absolute top-0 right-0 w-96 h-96 bg-brand-green/10 blur-[60px] -mr-32 -mt-32"></div>
@@ -763,15 +721,15 @@ export default function App() {
               </p>
             </div>
           </div>
-        </motion.div>
+        </div>
       </section>
 
       {/* 12. BLOCO DE OFERTA FINAL (REESTILIZADO) */}
       <section id="oferta" className="px-4 py-40 bg-black text-white text-center relative overflow-hidden">
         {/* Dynamic Background Elements */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-brand-green/20 rounded-full blur-[100px] animate-pulse"></div>
-          <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-brand-green/10 rounded-full blur-[80px] animate-pulse delay-1000"></div>
+          <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-brand-green/20 rounded-full blur-[100px]"></div>
+          <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-brand-green/10 rounded-full blur-[80px]"></div>
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
         </div>
 
@@ -823,41 +781,15 @@ export default function App() {
             </div>
           </div>
 
-          <motion.a 
+          <a 
             href="https://checkout.exemplo.com" 
-            initial={{ scale: 0.9, opacity: 0 }}
-            whileInView={{ scale: 1, opacity: 1 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            viewport={{ once: true }}
-            className="group relative block w-full py-6 bg-brand-green text-white font-semibold text-xl md:text-2xl rounded-2xl shadow-[0_20px_60px_rgba(34,197,94,0.3)] transition-all overflow-hidden font-sans"
+            className="group relative block w-full py-6 bg-brand-green text-white font-semibold text-xl md:text-2xl rounded-2xl shadow-[0_20px_60px_rgba(34,197,94,0.3)] transition-all overflow-hidden font-sans hover:scale-[1.02] active:scale-[0.98]"
           >
-            {/* Animated Glow Layer */}
-            <motion.div
-              animate={{
-                opacity: [0.4, 0.8, 0.4],
-                scale: [1, 1.1, 1],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="absolute inset-0 bg-brand-green blur-xl -z-10"
-            />
+            {/* Static Glow Layer */}
+            <div className="absolute inset-0 bg-brand-green/60 blur-xl -z-10" />
 
-            {/* Shimmering Light Effect */}
-            <motion.div
-              initial={{ x: "-100%" }}
-              animate={{ x: "200%" }}
-              transition={{
-                duration: 2.5,
-                repeat: Infinity,
-                ease: "linear",
-                repeatDelay: 0.5
-              }}
-              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/40 to-transparent -skew-x-20 z-0"
-            />
+            {/* Shimmering Light Effect (CSS only) */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-20 z-0 animate-shimmer" />
             
             <span className="relative z-10 flex items-center justify-center gap-4 italic tracking-tight">
               Quero meu acesso agora <ArrowRight className="w-6 h-6 group-hover:translate-x-2 transition-transform" />
@@ -865,7 +797,7 @@ export default function App() {
 
             {/* Outer Glow Pulse */}
             <div className="absolute -inset-4 bg-brand-green/30 blur-xl group-hover:bg-brand-green/50 transition-colors -z-20"></div>
-          </motion.a>
+          </a>
           
           <div className="mt-16 flex flex-wrap items-center justify-center gap-10 text-gray-500 font-bold uppercase text-xs tracking-[0.2em] font-sans">
             <div className="flex items-center gap-3 bg-white/5 px-6 py-3 rounded-full border border-white/5">
