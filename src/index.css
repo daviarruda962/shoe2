@@ -78,7 +78,7 @@
 
 .animate-gradient-red {
   background: linear-gradient(-45deg, #ef4444, #991b1b, #ef4444, #991b1b);
-  background-size: 400% 400%;
+  background-size: 200% 200%;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -93,7 +93,7 @@
 
 .animate-gradient-green {
   background: linear-gradient(-45deg, #22c55e, #14532d, #22c55e, #14532d);
-  background-size: 400% 400%;
+  background-size: 200% 200%;
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -107,6 +107,7 @@
 
 .animate-marquee {
   animation: marquee 30s linear infinite;
+  will-change: transform;
 }
 
 .animate-marquee:hover,

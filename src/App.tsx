@@ -84,7 +84,6 @@ function ImportCard({ item }: { item: any }) {
     <motion.div 
       initial={false}
       whileInView={{ 
-        boxShadow: "0 0 60px rgba(0, 255, 102, 0.25)",
         borderColor: "rgba(34, 197, 94, 0.4)",
       }}
       viewport={{ once: false, amount: 0.6 }}
@@ -174,7 +173,7 @@ export default function App() {
           </div>
           
           {/* Sombra decorativa */}
-          <div className="absolute -inset-4 bg-brand-green/10 blur-3xl -z-10 rounded-full opacity-50 group-hover:opacity-100 transition-opacity"></div>
+          <div className="absolute -inset-4 bg-brand-green/10 blur-xl -z-10 rounded-full opacity-50 group-hover:opacity-100 transition-opacity"></div>
         </div>
       </section>
 
@@ -182,8 +181,8 @@ export default function App() {
       <section className="pt-[50px] pb-[50px] overflow-hidden relative bg-white">
         {/* Background Orbs (Subtle on white) */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full overflow-hidden pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-brand-green/5 rounded-full blur-[120px] animate-pulse"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-brand-green/5 rounded-full blur-[100px] animate-pulse delay-700"></div>
+          <div className="absolute top-1/4 left-1/4 w-[500px] h-[500px] bg-brand-green/5 rounded-full blur-[80px] animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-[400px] h-[400px] bg-brand-green/5 rounded-full blur-[60px] animate-pulse delay-700"></div>
         </div>
 
         <div className="text-center mb-20 px-4 relative z-10">
@@ -299,7 +298,7 @@ export default function App() {
               repeat: Infinity,
               ease: "easeInOut",
             }}
-            className="absolute inset-0 bg-brand-green blur-2xl -z-10"
+            className="absolute inset-0 bg-brand-green blur-xl -z-10"
           />
 
           {/* Shimmering Light Effect */}
@@ -320,16 +319,16 @@ export default function App() {
           </span>
 
           {/* Outer Glow Pulse */}
-          <div className="absolute -inset-4 bg-brand-green/30 blur-3xl group-hover:bg-brand-green/50 transition-colors -z-20"></div>
+          <div className="absolute -inset-4 bg-brand-green/30 blur-xl group-hover:bg-brand-green/50 transition-colors -z-20"></div>
         </motion.a>
       </div>
 
       {/* 6. GRID DE BENEFÍCIOS (REESTILIZADO) */}
       <div className="bg-zinc-950 py-32 mb-32 relative overflow-hidden">
         {/* Background Glows */}
-        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-brand-green/20 rounded-full blur-[140px] -translate-x-1/2 -translate-y-1/2"></div>
-        <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-brand-green/15 rounded-full blur-[140px] translate-x-1/2 translate-y-1/2"></div>
-        <div className="absolute top-1/2 left-1/2 w-[800px] h-[800px] bg-brand-green/5 rounded-full blur-[160px] -translate-x-1/2 -translate-y-1/2 opacity-50"></div>
+        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-brand-green/20 rounded-full blur-[80px] -translate-x-1/2 -translate-y-1/2"></div>
+        <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-brand-green/15 rounded-full blur-[80px] translate-x-1/2 translate-y-1/2"></div>
+        <div className="absolute top-1/2 left-1/2 w-[800px] h-[800px] bg-brand-green/5 rounded-full blur-[100px] -translate-x-1/2 -translate-y-1/2 opacity-50"></div>
 
         <section className="px-4 max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-28">
@@ -350,9 +349,9 @@ export default function App() {
             ].map((item, idx) => (
               <div 
                 key={idx} 
-                className="p-10 md:p-12 bg-white/5 backdrop-blur-md text-white rounded-[32px] border border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.2)] flex flex-col items-center text-center group relative overflow-hidden transition-all duration-500"
+                className="p-10 md:p-12 bg-white/5 backdrop-blur-none md:backdrop-blur-md text-white rounded-[32px] border border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.2)] flex flex-col items-center text-center group relative overflow-hidden transition-all duration-500"
               >
-                <div className="absolute top-0 right-0 w-32 h-32 bg-brand-green/5 blur-3xl -mr-16 -mt-16 group-hover:bg-brand-green/10 transition-colors"></div>
+                <div className="absolute top-0 right-0 w-32 h-32 bg-brand-green/5 blur-xl -mr-16 -mt-16 group-hover:bg-brand-green/10 transition-colors"></div>
                 
                 <div 
                   className="w-16 h-16 bg-brand-green rounded-2xl flex items-center justify-center mb-8 shadow-[0_10px_30px_rgba(34,197,94,0.3)] transition-all duration-500"
@@ -384,10 +383,10 @@ export default function App() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bg-zinc-950 text-white rounded-3xl shadow-[0_32px_64px_-16px_rgba(220,38,38,0.2)] relative overflow-hidden border border-white/5 p-[15px] pb-[30px] group transition-all duration-500 hover:shadow-[0_48px_80px_-16px_rgba(220,38,38,0.3)]"
+          className="bg-zinc-950 text-white rounded-3xl shadow-[0_20px_40px_-12px_rgba(220,38,38,0.15)] relative overflow-hidden border border-white/5 p-[15px] pb-[30px] group transition-all duration-500 hover:shadow-[0_32px_60px_-12px_rgba(220,38,38,0.25)]"
         >
-          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-red-600/10 rounded-full blur-[120px] -mr-48 -mt-48 group-hover:bg-red-600/20 transition-colors duration-700"></div>
-          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-red-600/5 rounded-full blur-[100px] -ml-24 -mb-24"></div>
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-red-600/10 rounded-full blur-[80px] -mr-48 -mt-48 group-hover:bg-red-600/20 transition-colors duration-700"></div>
+          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-red-600/5 rounded-full blur-[60px] -ml-24 -mb-24"></div>
           
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="order-2 lg:order-1 flex flex-col items-center text-center">
@@ -405,9 +404,8 @@ export default function App() {
                 ].map((text, idx) => (
                   <motion.div 
                     key={idx} 
-                    initial={{ scale: 1, boxShadow: "0 0 0px rgba(239, 68, 68, 0)", borderColor: "rgba(255, 255, 255, 0.1)" }}
+                    initial={{ scale: 1, borderColor: "rgba(255, 255, 255, 0.1)" }}
                     whileInView={{ 
-                      boxShadow: "0 0 25px rgba(239, 68, 68, 0.25)", 
                       borderColor: "rgba(239, 68, 68, 0.4)" 
                     }}
                     viewport={{ margin: "-45% 0px -45% 0px" }}
@@ -450,13 +448,13 @@ export default function App() {
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="bg-zinc-950 text-white rounded-3xl shadow-[0_32px_64px_-16px_rgba(34,197,94,0.2)] relative overflow-hidden border border-white/5 p-[15px] pb-[30px] group transition-all duration-500 hover:shadow-[0_48px_80px_-16px_rgba(34,197,94,0.3)]"
+          className="bg-zinc-950 text-white rounded-3xl shadow-[0_20px_40px_-12px_rgba(34,197,94,0.15)] relative overflow-hidden border border-white/5 p-[15px] pb-[30px] group transition-all duration-500 hover:shadow-[0_32px_60px_-12px_rgba(34,197,94,0.25)]"
         >
           {/* Animated Shimmer Effect */}
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-brand-green/[0.05] to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-[2000ms] ease-in-out"></div>
           
-          <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-brand-green/10 rounded-full blur-[120px] -ml-48 -mt-48 group-hover:bg-brand-green/20 transition-colors duration-700"></div>
-          <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-brand-green/5 rounded-full blur-[100px] -mr-24 -mb-24"></div>
+          <div className="absolute top-0 left-0 w-[600px] h-[600px] bg-brand-green/10 rounded-full blur-[80px] -ml-48 -mt-48 group-hover:bg-brand-green/20 transition-colors duration-700"></div>
+          <div className="absolute bottom-0 right-0 w-[400px] h-[400px] bg-brand-green/5 rounded-full blur-[60px] -mr-24 -mb-24"></div>
           
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div className="relative">
@@ -496,9 +494,8 @@ export default function App() {
                 ].map((text, idx) => (
                   <motion.div 
                     key={idx} 
-                    initial={{ scale: 1, boxShadow: "0 0 0px rgba(34, 197, 94, 0)", borderColor: "rgba(255, 255, 255, 0.1)" }}
+                    initial={{ scale: 1, borderColor: "rgba(255, 255, 255, 0.1)" }}
                     whileInView={{ 
-                      boxShadow: "0 0 25px rgba(34, 197, 94, 0.25)", 
                       borderColor: "rgba(34, 197, 94, 0.4)" 
                     }}
                     viewport={{ margin: "-45% 0px -45% 0px" }}
@@ -517,9 +514,9 @@ export default function App() {
       {/* 9. O QUE VOCÊ PODE IMPORTAR (DARK & SHINY) */}
       <section className="bg-black py-32 relative overflow-hidden bg-[radial-gradient(circle_at_50%_50%,rgba(34,197,94,0.05)_0%,transparent_70%)]">
         {/* Background Glows */}
-        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-brand-green/20 blur-[140px] rounded-full -translate-x-1/2 -translate-y-1/2"></div>
-        <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-brand-green/15 blur-[140px] rounded-full translate-x-1/2 translate-y-1/2"></div>
-        <div className="absolute top-1/2 left-1/2 w-[800px] h-[800px] bg-brand-green/10 blur-[160px] rounded-full -translate-x-1/2 -translate-y-1/2 opacity-60"></div>
+        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] bg-brand-green/20 blur-[80px] rounded-full -translate-x-1/2 -translate-y-1/2"></div>
+        <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-brand-green/15 blur-[80px] rounded-full translate-x-1/2 translate-y-1/2"></div>
+        <div className="absolute top-1/2 left-1/2 w-[800px] h-[800px] bg-brand-green/10 blur-[100px] rounded-full -translate-x-1/2 -translate-y-1/2 opacity-60"></div>
 
         <div className="px-4 max-w-7xl mx-auto relative z-10">
           <div className="text-center mb-20">
@@ -578,7 +575,7 @@ export default function App() {
       {/* 10. SEÇÃO DE BRINDES (BONUS REESTILIZADO) */}
       <section className="px-4 max-w-6xl mx-auto mb-32 flex flex-col items-center relative">
         {/* Section Background Glow */}
-        <div className="absolute top-1/2 left-1/2 w-[800px] h-[800px] bg-brand-green/5 blur-[150px] rounded-full -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
+        <div className="absolute top-1/2 left-1/2 w-[800px] h-[800px] bg-brand-green/5 blur-[100px] rounded-full -translate-x-1/2 -translate-y-1/2 pointer-events-none"></div>
         
         <div className="text-center mb-16 relative z-10">
           <h2 className="text-[52px] md:text-[52px] font-black italic tracking-tighter leading-none pt-[35px]">
@@ -593,17 +590,16 @@ export default function App() {
             whileInView={{ 
               y: -8, 
               scale: 1.02,
-              boxShadow: "0 0 50px rgba(34, 197, 94, 0.2)",
               borderColor: "rgba(34, 197, 94, 0.3)"
             }}
             viewport={{ margin: "-40% 0px -40% 0px" }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            className="bg-zinc-900 text-white p-10 rounded-[40px] relative overflow-hidden group shadow-2xl flex flex-col items-center text-center border border-white/10 h-full transition-all"
+            className="bg-zinc-900 text-white p-10 rounded-[40px] relative overflow-hidden group shadow-xl flex flex-col items-center text-center border border-white/10 h-full transition-all"
           >
-            <div className="absolute top-0 right-0 w-64 h-64 bg-brand-green/15 blur-[100px] -mr-32 -mt-32 group-hover:bg-brand-green/25 transition-colors"></div>
+            <div className="absolute top-0 right-0 w-64 h-64 bg-brand-green/15 blur-[60px] -mr-32 -mt-32 group-hover:bg-brand-green/25 transition-colors"></div>
             
             <motion.div 
-              whileInView={{ rotate: 6, scale: 1.1, boxShadow: "0 0 30px rgba(34, 197, 94, 0.5)" }}
+              whileInView={{ rotate: 6, scale: 1.1 }}
               viewport={{ margin: "-40% 0px -40% 0px" }}
               className="w-16 h-16 bg-brand-green rounded-2xl flex items-center justify-center mb-8 shadow-[0_10px_30px_rgba(34,197,94,0.3)] transition-all"
             >
@@ -650,17 +646,16 @@ export default function App() {
             whileInView={{ 
               y: -8, 
               scale: 1.02,
-              boxShadow: "0 0 50px rgba(34, 197, 94, 0.2)",
               borderColor: "rgba(34, 197, 94, 0.3)"
             }}
             viewport={{ margin: "-40% 0px -40% 0px" }}
             transition={{ type: "spring", stiffness: 300, damping: 20 }}
-            className="bg-zinc-900 text-white p-10 rounded-[40px] relative overflow-hidden group shadow-2xl flex flex-col items-center text-center border border-white/10 h-full transition-all"
+            className="bg-zinc-900 text-white p-10 rounded-[40px] relative overflow-hidden group shadow-xl flex flex-col items-center text-center border border-white/10 h-full transition-all"
           >
-            <div className="absolute top-0 right-0 w-64 h-64 bg-brand-green/15 blur-[100px] -mr-32 -mt-32 group-hover:bg-brand-green/25 transition-colors"></div>
+            <div className="absolute top-0 right-0 w-64 h-64 bg-brand-green/15 blur-[60px] -mr-32 -mt-32 group-hover:bg-brand-green/25 transition-colors"></div>
             
             <motion.div 
-              whileInView={{ rotate: 6, scale: 1.1, boxShadow: "0 0 30px rgba(34, 197, 94, 0.5)" }}
+              whileInView={{ rotate: 6, scale: 1.1 }}
               viewport={{ margin: "-40% 0px -40% 0px" }}
               className="w-16 h-16 bg-brand-green rounded-2xl flex items-center justify-center mb-8 shadow-[0_10px_30px_rgba(34,197,94,0.3)] transition-all"
             >
@@ -704,8 +699,8 @@ export default function App() {
           className="bg-zinc-900 text-white rounded-[40px] shadow-[0_40px_100px_rgba(0,0,0,0.5)] relative overflow-hidden border border-white/10 p-8 md:p-20 group flex flex-col items-center text-center"
         >
           {/* Background Decorative Elements */}
-          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-green/20 rounded-full blur-[140px] -mr-64 -mt-64 group-hover:bg-brand-green/30 transition-colors duration-700"></div>
-          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-brand-green/10 rounded-full blur-[100px] -ml-32 -mb-32"></div>
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-green/20 rounded-full blur-[80px] -mr-64 -mt-64 group-hover:bg-brand-green/30 transition-colors duration-700"></div>
+          <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-brand-green/10 rounded-full blur-[60px] -ml-32 -mb-32"></div>
           
           <div className="relative z-10 max-w-4xl w-full">
             <div className="inline-flex items-center gap-2 px-5 py-2 bg-brand-green text-black font-black text-[10px] rounded-full mb-8 tracking-[0.2em] uppercase shadow-[0_0_20px_rgba(34,197,94,0.3)]">
@@ -732,7 +727,7 @@ export default function App() {
                   initial={{ y: 0, scale: 1 }}
                   whileInView={{ y: -8, scale: 1.03, backgroundColor: "rgba(255, 255, 255, 0.1)" }}
                   viewport={{ margin: "-45% 0px -45% 0px" }}
-                  className="bg-white/5 backdrop-blur-md p-8 rounded-3xl border border-white/10 flex flex-col items-center gap-4 transition-all group/item"
+                  className="bg-white/5 md:backdrop-blur-md p-8 rounded-3xl border border-white/10 flex flex-col items-center gap-4 transition-all group/item"
                 >
                   <motion.div 
                     whileInView={{ rotate: 6, scale: 1.1 }}
@@ -760,7 +755,7 @@ export default function App() {
           viewport={{ once: true }}
           className="bg-zinc-900 rounded-[40px] border border-white/10 p-8 md:p-16 relative overflow-hidden group"
         >
-          <div className="absolute top-0 right-0 w-96 h-96 bg-brand-green/10 blur-[100px] -mr-32 -mt-32"></div>
+          <div className="absolute top-0 right-0 w-96 h-96 bg-brand-green/10 blur-[60px] -mr-32 -mt-32"></div>
           
           <div className="relative z-10 flex flex-col md:flex-row items-center gap-8 md:gap-16">
             <div className="flex-shrink-0 relative">
@@ -771,7 +766,7 @@ export default function App() {
                   transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
                   className="absolute inset-0 border-4 border-dashed border-brand-green/30 rounded-full"
                 />
-                <div className="absolute inset-4 border-2 border-brand-green rounded-full flex items-center justify-center bg-brand-green/5 backdrop-blur-sm">
+                <div className="absolute inset-4 border-2 border-brand-green rounded-full flex items-center justify-center bg-brand-green/5 md:backdrop-blur-sm">
                   <div className="text-center">
                     <span className="block text-7xl md:text-8xl font-black text-brand-green leading-none">7</span>
                     <span className="block text-sm md:text-base font-black text-white uppercase tracking-[0.2em]">Dias</span>
@@ -802,8 +797,8 @@ export default function App() {
       <section id="oferta" className="px-4 py-40 bg-black text-white text-center relative overflow-hidden">
         {/* Dynamic Background Elements */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-brand-green/20 rounded-full blur-[150px] animate-pulse"></div>
-          <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-brand-green/10 rounded-full blur-[120px] animate-pulse delay-1000"></div>
+          <div className="absolute top-[-10%] left-[-10%] w-[60%] h-[60%] bg-brand-green/20 rounded-full blur-[100px] animate-pulse"></div>
+          <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-brand-green/10 rounded-full blur-[80px] animate-pulse delay-1000"></div>
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/carbon-fibre.png')] opacity-10"></div>
         </div>
 
@@ -819,7 +814,7 @@ export default function App() {
           
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-6 mb-20 items-stretch">
             {/* Price Card */}
-            <div className="lg:col-span-3 bg-zinc-900/50 backdrop-blur-xl p-12 rounded-[48px] border border-white/10 flex flex-col justify-center text-center relative overflow-hidden group font-sans">
+            <div className="lg:col-span-3 bg-zinc-900/50 md:backdrop-blur-xl p-12 rounded-[48px] border border-white/10 flex flex-col justify-center text-center relative overflow-hidden group font-sans">
               <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
                 <TrendingDown className="w-32 h-32 text-brand-green" />
               </div>
@@ -835,7 +830,7 @@ export default function App() {
             </div>
             
             {/* Features Card */}
-            <div className="lg:col-span-2 bg-zinc-900/50 backdrop-blur-xl p-12 rounded-[48px] border border-white/10 flex flex-col justify-center text-white relative overflow-hidden font-sans">
+            <div className="lg:col-span-2 bg-zinc-900/50 md:backdrop-blur-xl p-12 rounded-[48px] border border-white/10 flex flex-col justify-center text-white relative overflow-hidden font-sans">
               <h3 className="text-3xl font-black leading-none mb-8">O que você recebe:</h3>
               
               <ul className="space-y-6 text-left font-bold text-xl">
@@ -875,7 +870,7 @@ export default function App() {
                 repeat: Infinity,
                 ease: "easeInOut",
               }}
-              className="absolute inset-0 bg-brand-green blur-2xl -z-10"
+              className="absolute inset-0 bg-brand-green blur-xl -z-10"
             />
 
             {/* Shimmering Light Effect */}
@@ -896,7 +891,7 @@ export default function App() {
             </span>
 
             {/* Outer Glow Pulse */}
-            <div className="absolute -inset-4 bg-brand-green/30 blur-3xl group-hover:bg-brand-green/50 transition-colors -z-20"></div>
+            <div className="absolute -inset-4 bg-brand-green/30 blur-xl group-hover:bg-brand-green/50 transition-colors -z-20"></div>
           </motion.a>
           
           <div className="mt-16 flex flex-wrap items-center justify-center gap-10 text-gray-500 font-bold uppercase text-xs tracking-[0.2em] font-sans">
@@ -926,10 +921,7 @@ export default function App() {
           ].map((faq, idx) => (
             <motion.div 
               key={idx} 
-              initial={{ boxShadow: "none" }}
-              whileInView={{ boxShadow: "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)" }}
-              viewport={{ margin: "-45% 0px -45% 0px" }}
-              className="border-2 border-gray-100 rounded-[30px] overflow-hidden bg-white shadow-sm transition-shadow"
+              className="border-2 border-gray-100 rounded-[30px] overflow-hidden bg-white shadow-sm transition-all hover:shadow-md"
             >
               <motion.button 
                 onClick={() => toggleFaq(idx)}
