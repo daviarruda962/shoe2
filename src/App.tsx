@@ -80,25 +80,6 @@ function LazyImage({ src, alt, className, width = 800, quality = 75, ...props }:
 }
 
 function ImportCard({ item }: { item: any }) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [constraints, setConstraints] = useState({ left: 0, right: 0 });
-
-  useEffect(() => {
-    const updateConstraints = () => {
-      if (containerRef.current) {
-        const width = containerRef.current.offsetWidth;
-        setConstraints({
-          left: -(item.images.length - 1) * width,
-          right: 0
-        });
-      }
-    };
-
-    updateConstraints();
-    window.addEventListener('resize', updateConstraints);
-    return () => window.removeEventListener('resize', updateConstraints);
-  }, [item.images.length]);
-
   return (
     <motion.div 
       initial={false}
@@ -119,33 +100,14 @@ function ImportCard({ item }: { item: any }) {
       ></motion.div>
       
       <div className="relative flex flex-col h-full">
-        {/* Image Slider Container */}
-        <div ref={containerRef} className="relative h-72 overflow-hidden bg-neutral-900">
-          <motion.div 
-            drag="x"
-            dragConstraints={constraints}
-            dragElastic={0.2}
-            dragTransition={{ bounceStiffness: 600, bounceDamping: 20 }}
-            className="flex h-full cursor-grab active:cursor-grabbing"
-          >
-            {item.images.map((imgUrl: string, sIdx: number) => (
-              <div key={sIdx} className="w-full h-full flex-shrink-0 relative">
-                <LazyImage 
-                  src={imgUrl} 
-                  alt={item.title}
-                  width={600}
-                  className="w-full h-full"
-                />
-              </div>
-            ))}
-          </motion.div>
-          
-          {/* Swipe Indicator */}
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-1.5">
-            {item.images.map((_: any, sIdx: number) => (
-              <div key={sIdx} className="w-1 h-1 rounded-full bg-white/20 group-hover:bg-brand-green/40 transition-colors"></div>
-            ))}
-          </div>
+        {/* Single Image Container */}
+        <div className="relative h-72 overflow-hidden bg-neutral-900">
+          <LazyImage 
+            src={item.images[0]} 
+            alt={item.title}
+            width={600}
+            className="w-full h-full"
+          />
         </div>
 
         {/* Content */}
@@ -386,27 +348,21 @@ export default function App() {
               { icon: <Layers className="w-8 h-8 text-black" />, title: "Diversas qualidades", desc: <span>Escolha entre qualidade <strong className="text-white font-black">média, alta ou idêntica ao original (1:1).</strong></span> },
               { icon: <Headphones className="w-8 h-8 text-black" />, title: "Suporte 24h", desc: <span>Atendimento <strong className="text-white font-black">especializado em português.</strong> Dúvidas resolvidas na hora.</span> }
             ].map((item, idx) => (
-              <motion.div 
+              <div 
                 key={idx} 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.5, delay: idx * 0.1 }}
                 className="p-10 md:p-12 bg-white/5 backdrop-blur-md text-white rounded-[32px] border border-white/10 shadow-[0_8px_30px_rgb(0,0,0,0.2)] flex flex-col items-center text-center group relative overflow-hidden transition-all duration-500"
               >
                 <div className="absolute top-0 right-0 w-32 h-32 bg-brand-green/5 blur-3xl -mr-16 -mt-16 group-hover:bg-brand-green/10 transition-colors"></div>
                 
-                <motion.div 
-                  whileInView={{ scale: 1.1, rotate: 3 }}
-                  viewport={{ margin: "-40% 0px -40% 0px" }}
+                <div 
                   className="w-16 h-16 bg-brand-green rounded-2xl flex items-center justify-center mb-8 shadow-[0_10px_30px_rgba(34,197,94,0.3)] transition-all duration-500"
                 >
                   {item.icon}
-                </motion.div>
+                </div>
                 
                 <h3 className="text-2xl font-black mb-4 tracking-tight">{item.title}</h3>
                 <p className="text-gray-400 leading-relaxed text-base font-medium">{item.desc}</p>
-              </motion.div>
+              </div>
             ))}
           </div>
         </section>
@@ -609,9 +565,7 @@ export default function App() {
                 title: "Roupas", 
                 desc: "Jaquetas, camisetas, calças, o que você imaginar de diversas marcas", 
                 images: [
-                  "https://picsum.photos/seed/shirt-1/600/600",
-                  "https://picsum.photos/seed/jacket-1/600/600",
-                  "https://picsum.photos/seed/hoodie-1/600/600"
+                  "https://i.ibb.co/GQs84MDg/2.png"
                 ]
               }
             ].map((item, idx) => (
@@ -667,18 +621,23 @@ export default function App() {
 
             <div className="mt-auto w-full flex flex-col items-center gap-4">
               <div className="flex -space-x-4">
-                {[1, 2, 3, 4].map(i => (
+                {[
+                  "https://i.ibb.co/qYJDD7dw/tenis.png",
+                  "https://i.ibb.co/GQs84MDg/2.png",
+                  "https://i.ibb.co/BVvp4yqn/t2.png",
+                  "https://i.ibb.co/fzkDcpNp/3.png"
+                ].map((url, i) => (
                   <div key={i} className="w-12 h-12 rounded-full border-4 border-zinc-900 overflow-hidden shadow-lg group-hover:scale-110 transition-transform" style={{ transitionDelay: `${i * 50}ms` }}>
                     <LazyImage 
-                      src={`https://picsum.photos/seed/user-bonus-${i}/100/100`} 
-                      alt="User" 
+                      src={url} 
+                      alt="Produto" 
                       width={100}
                       className="w-full h-full"
                     />
                   </div>
                 ))}
                 <div className="w-12 h-12 rounded-full border-4 border-zinc-900 bg-brand-green flex items-center justify-center text-black font-black text-xs">
-                  +10k
+                  +40k
                 </div>
               </div>
               <div className="text-brand-green font-black text-xs tracking-widest uppercase">Atualizado hoje</div>
